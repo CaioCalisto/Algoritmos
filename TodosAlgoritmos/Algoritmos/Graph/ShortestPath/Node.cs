@@ -8,5 +8,11 @@
         }
 
         public string Name { get; set; }
+
+        public int DistanceFromSource { get; set; }
+
+        public bool InTree { get; set; }
+
+        public Node Parent { get; set; }
     }
 }

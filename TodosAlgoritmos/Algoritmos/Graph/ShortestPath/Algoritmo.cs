@@ -1,4 +1,7 @@
-﻿namespace Algoritmos.Graph.ShortestPath
+﻿using System;
+using System.Collections.Generic;
+
+namespace Algoritmos.Graph.ShortestPath
 {
     /// <summary>
     /// The shortest path from one vertex to another vertex is a path 
@@ -15,5 +18,49 @@
     /// </summary>
     public class Algoritmo
     {
+        public void Dijkstra(Graph graph, Node from)
+        {
+            this.PrepareForDijkstra(graph);
+
+            from.DistanceFromSource = 0;
+            Node currentNode = from;
+            int bestDistance;
+
+            while (currentNode.InTree == false)
+            {
+                currentNode.InTree = true;
+                List<Edge> edges = graph.GetEdges(currentNode);
+                while (edges.Count > 0)
+                {
+                    Node to = edges[0].To;
+                    if (to.DistanceFromSource > (currentNode.DistanceFromSource + edges[0].Distance))
+                    {
+                        to.DistanceFromSource = currentNode.DistanceFromSource + edges[0].Distance;
+                        to.Parent = currentNode;
+                    }
+                    edges.RemoveAt(0);
+                }
+
+                bestDistance = int.MaxValue;
+                foreach(Node node in graph.Nodes)
+                {
+                    if (node.InTree == false && bestDistance > node.DistanceFromSource)
+                    {
+                        bestDistance = node.DistanceFromSource;
+                        currentNode = node;
+                    }
+                }
+            }
+        }
+
+        private void PrepareForDijkstra(Graph graph)
+        {
+            foreach (Node node in graph.Nodes)
+            {
+                node.InTree = false;
+                node.DistanceFromSource = int.MaxValue;
+                node.Parent = null;
+            }
+        }
     }
 }
