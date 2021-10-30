@@ -12,8 +12,11 @@ namespace Algoritmos.Graph.BreadthFirstSearch
     /// </summary>
     public static class Algoritmo
     {
-        public static void VisitAllNodes(Graph graph, Node start)
+        public static string[] VisitAllNodes(Graph graph, Node start)
         {
+            int i = 0;
+            string[] order = new string[graph.GetNodesCount()];
+
             List<Node> stack = new List<Node>();
             foreach (Node node in graph.GetAllNodes())
             {
@@ -26,6 +29,10 @@ namespace Algoritmos.Graph.BreadthFirstSearch
             while (stack.Count != 0)
             {
                 Node currentNode = stack[0];
+                stack.RemoveAt(0);
+                order[i] = currentNode.Name;
+                i++;
+
                 foreach (Node adjascent in graph.GetAdjacents(currentNode))
                 {
                     if (!adjascent.Discovered)
@@ -33,9 +40,10 @@ namespace Algoritmos.Graph.BreadthFirstSearch
                         adjascent.Discovered = true;
                         stack.Add(adjascent);
                     }
-                }
-                stack.RemoveAt(0);
+                }                
             }
+
+            return order;
         }
     }
 }
