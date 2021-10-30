@@ -13,23 +13,21 @@ namespace Algoritmos.Graph.DepthFirstSearch
     /// </summary>
     public class Algoritmo
     {
-        private string[] order;
         private int iterator;
 
-        public string[] Order => order;
+        public string[] Order { get; private set; }
 
         public void VisitAllNodes(Graph graph, Node start)
-        {
-            order = new string[graph.GetNodesCount()];
-            iterator = 0;
+        {            
             foreach (Node node in graph.GetAllNodes())
             {
                 node.Discovered = false;
             }
 
+            Order = new string[graph.GetNodesCount()];
+            iterator = 0;
             start.Discovered = true;
-            this.order[iterator] = start.Name;
-            iterator++;
+            this.AddToOrderOutput(start.Name);
 
             Dfs(graph, start);
         }
@@ -46,11 +44,16 @@ namespace Algoritmos.Graph.DepthFirstSearch
                 if (!sucessor.Discovered)
                 {
                     sucessor.Discovered = true;
-                    this.order[iterator] = sucessor.Name;
-                    iterator++;
+                    this.AddToOrderOutput(sucessor.Name);
                     Dfs(graph, sucessor);
                 }
             }
+        }
+
+        private void AddToOrderOutput(string node)
+        {
+            this.Order[iterator] = node;
+            iterator++;
         }
     }
 }
