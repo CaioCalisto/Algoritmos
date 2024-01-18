@@ -19,9 +19,9 @@ public class DepthFirstSearchTest
         graph.DFS(0);
         
         // 0 => 1
-        // 1 => 3
-        // 3 => 5
-        // 0 => 2
+        // 1 => 3 from 0 to the last vertex 3
+        // 3 => 5 from 3 to the last
+        // 0 => 2 start again
         // 2 => 4
         Assert.Equal(0, graph.Output[0]);
         Assert.Equal(1, graph.Output[1]);
