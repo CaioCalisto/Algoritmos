@@ -55,7 +55,7 @@ public class BreadthFirstSearch
         {
             startNode = queue.Dequeue(); // Step 3: get the next level
             _result.Add(startNode);
-
+            
             foreach (var neighbor in _adjacents[startNode])
             {
                 // Step 2: Visit all unvisited neighbors of the current node
@@ -63,7 +63,8 @@ public class BreadthFirstSearch
                 {
                     visited[neighbor] = true;
                     
-                    // Step: enqueue this neighbor to be visited after all this level neighbor is visited
+                    // Step 3: enqueue this neighbor to be visited after all this level neighbor is visited
+                    // Step 4: repeat (because the while statement is still true)
                     queue.Enqueue(neighbor);
                 }
             }
