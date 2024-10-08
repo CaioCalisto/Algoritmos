@@ -17,7 +17,7 @@ public static class BinarySearch
     /// 3.2- If the target value is less than the value at the midpoint, update the end pointer to be one less than the midpoint.
     /// 3.3- If the target value is greater than the value at the midpoint, update the start pointer to be one more than the midpoint.
     /// </summary>
-    /// <param name="inputs">Array of inputs.</param>
+    /// <param name="inputs">Array of SORTED inputs.</param>
     /// <param name="target">The value we want to find.</param>
     /// <returns>Index where the target is found in the array.</returns>
     public static int Find(int[] inputs, int target)

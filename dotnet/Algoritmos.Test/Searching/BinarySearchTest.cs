@@ -10,6 +10,9 @@ public class BinarySearchTest
     [InlineData(new int[] { 2, 4, 7, 10, 15, 18, 22, 27 }, 7, 2)]
     [InlineData(new int[] { 2, 4, 7, 10, 15, 18, 22, 27 }, 10, 3)]
     [InlineData(new int[] { 2, 4, 7, 10, 15, 18, 22, 27 }, 15, 4)]
+    [InlineData(new int[] { 2, 4, 7, 10, 15, 18, 22, 27 }, 22, 6)]    
+    [InlineData(new int[] { 2, 4, 7, 10, 15, 18, 22, 27 }, 27, 7)]
+
     public void Find_value(int[] inputs, int target, int expectedIndex)
     {
         int indexResult = BinarySearch.Find(inputs, target);
